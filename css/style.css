@@ -38,6 +38,28 @@ body {
   transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Swiper custom styling */
+.swiper-slide {
+  height: auto !important;
+}
+
+.speakerSwiper .swiper-pagination-bullet-active,
+.updatesSwiper .swiper-pagination-bullet-active {
+  background-color: #FFBE98 !important;
+  opacity: 1 !important; /* Ensures the accent color is vibrant and fully opaque */
+}
+
+.speakerSwiper .swiper-pagination-bullet,
+.updatesSwiper .swiper-pagination-bullet {
+  background-color: #64748b !important;
+  opacity: 0.4 !important;
+}
+
+.speakerSwiper .swiper-pagination-bullet:hover,
+.updatesSwiper .swiper-pagination-bullet:hover {
+  opacity: 0.7 !important;
+}
+
 #mobileMenuContent.open {
   height: auto;
 }
@@ -65,5 +87,25 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700 !important;
 }
 
+/* Custom background color for registration form inputs, select, and textarea */
+#register input,
+#register select,
+#register textarea {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
 
+#register input::placeholder,
+#register textarea::placeholder {
+  color: rgba(0, 0, 0, 0.5) !important;
+}
+
+
+.category-card,.session-card,.fieldsetEditor{
+  background-color: rgba(0, 0, 0, 0.025) !important;
+    border:1px solid rgba(229, 158, 122, 0.25) !important;
+}
+
+.check-box.border-border {
+  border-color: #d1d5db !important;
+}
 

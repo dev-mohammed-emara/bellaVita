@@ -235,20 +235,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (modal && closeBtn) {
     document.querySelectorAll('.show-profile-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const id = btn.getAttribute('data-speaker');
-        const data = speakerInfo[id];
-        if (data) {
-          document.getElementById('modalImg').src = data.img;
-          document.getElementById('modalName').innerText = data.name;
-          document.getElementById('modalTitle').innerText = data.title;
-          document.getElementById('modalBio').innerText = data.bio;
-          modal.classList.remove('hidden');
-          modal.classList.add('flex');
-          
-          // Stop global scrolling when modal is active
-          lenis.stop();
-        }
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        // Do nothing for now as requested
       });
     });
 

@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
       
       // Data variables
       let selectedCategory = '';
-      let selectedAttendance = '';
+      let selectedAttendance = 'Full Summit';
       let selectedSessions = [];
       
       // Category selection
@@ -108,10 +108,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = (fname || lname) ? `${fname} ${lname}`.trim() : '—';
         document.getElementById('summaryName').innerText = name;
         if(document.getElementById('reviewName2')) document.getElementById('reviewName2').innerText = name;
+        
+        const specialty = document.getElementById('regSpecialty') ? document.getElementById('regSpecialty').value : '';
+        if(document.getElementById('summarySpeciality')) document.getElementById('summarySpeciality').innerText = specialty ? specialty : '—';
       };
       
       if (document.getElementById('regFirstName')) document.getElementById('regFirstName').addEventListener('input', updateSummary);
       if (document.getElementById('regLastName')) document.getElementById('regLastName').addEventListener('input', updateSummary);
+      if (document.getElementById('regSpecialty')) document.getElementById('regSpecialty').addEventListener('change', updateSummary);
       
       const validateStep = (step) => {
         if (step === 1) {
@@ -138,10 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
           return true;
         }
         if (step === 3) {
-          if (!selectedAttendance) {
-            Swal.fire({icon: 'warning', title: 'Missing Fields', text: 'Please select an attendance type.', confirmButtonColor: '#F8B995'});
-            return false;
-          }
           return true;
         }
         return true;

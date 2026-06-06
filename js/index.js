@@ -166,32 +166,33 @@ document.addEventListener('DOMContentLoaded', () => {
   // Stats counter scroll count-up animation
   // =========================================================================
   const stats = document.querySelectorAll('.stat-val');
-  let animated = false;
 
-  const animateStats = () => {
-    stats.forEach(stat => {
-      const target = parseInt(stat.getAttribute('data-target'));
-      let current = 0;
-      const speed = target / 50;
-      const interval = setInterval(() => {
-        current += speed;
-        if (current >= target) {
-          stat.innerText = target + '+';
-          clearInterval(interval);
-        } else {
-          stat.innerText = Math.floor(current) + '+';
-        }
-      }, 30);
-    });
+  const animateStat = (stat) => {
+    const target = parseInt(stat.getAttribute('data-target'));
+    const suffix = stat.hasAttribute('data-suffix') ? stat.getAttribute('data-suffix') : '+';
+    let current = 0;
+    const speed = target / 50;
+    const interval = setInterval(() => {
+      current += speed;
+      if (current >= target) {
+        stat.innerText = target + suffix;
+        clearInterval(interval);
+      } else {
+        stat.innerText = Math.floor(current) + suffix;
+      }
+    }, 30);
   };
 
   const handleStatsScroll = () => {
-    if (animated || stats.length === 0) return;
-    const rect = stats[0].getBoundingClientRect();
-    if (rect.top < window.innerHeight - 50) {
-      animateStats();
-      animated = true;
-    }
+    if (stats.length === 0) return;
+    stats.forEach(stat => {
+      if (stat.classList.contains('animated')) return;
+      const rect = stat.getBoundingClientRect();
+      if (rect.top < window.innerHeight - 50 && rect.bottom > 0) {
+        animateStat(stat);
+        stat.classList.add('animated');
+      }
+    });
   };
 
   if (stats.length > 0) {

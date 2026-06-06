@@ -245,6 +245,17 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         } else {
           // Final Submit
+          const termsCheck = document.getElementById('termsCheck');
+          if (termsCheck && !termsCheck.checked) {
+            Swal.fire({
+              icon: 'warning',
+              title: 'Terms & Conditions',
+              text: 'Please agree to the Terms and Conditions and Privacy Policy to complete your registration.',
+              confirmButtonColor: '#FFBE98'
+            });
+            return;
+          }
+          
           Swal.fire({
             icon: 'success',
             title: 'Registration Successful',

@@ -74,6 +74,7 @@
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 </head>
 <body class="bg-[#FAF7F4] text-[#2D2B3D]">
 <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-xl shadow-md scrolled">
@@ -104,7 +105,7 @@
             </header>
 
 <div class="pt-40 pb-20 px-6 max-w-4xl mx-auto min-h-screen">
-    <div class="bg-card rounded-3xl p-10 shadow-2xl border border-border">
+    <div class="bg-card rounded-3xl p-10 shadow-2xl border border-border" data-aos="fade-up" data-aos-delay="200">
         <h1 class="text-4xl font-serif mb-6 text-primary">Terms and Conditions</h1>
         <div class="space-y-6 text-foreground/80 leading-relaxed">
             <p>Welcome to the Bella Vita Wellness & Beauty Summit 2026. By registering for or attending the summit, you agree to these Terms and Conditions.</p>
@@ -219,5 +220,58 @@
               </div>
             </footer>
 <script src="../js/index.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Basic elements
+      document.querySelectorAll('h1, h2, h3').forEach(el => {
+        if (!el.hasAttribute('data-aos')) el.setAttribute('data-aos', 'fade-up');
+      });
+      document.querySelectorAll('p').forEach(el => {
+        if (!el.hasAttribute('data-aos')) {
+          el.setAttribute('data-aos', 'fade-up');
+          el.setAttribute('data-aos-delay', '100');
+        }
+      });
+
+      // Cards and images
+      let cardDelay = 100;
+      document.querySelectorAll('.rounded-2xl, .rounded-\\[32px\\], .rounded-3xl, .rounded-xl, .category-card, .session-card, .attendance-card, img').forEach(el => {
+        if (!el.hasAttribute('data-aos')) {
+          el.setAttribute('data-aos', 'fade-up');
+          el.setAttribute('data-aos-delay', String(cardDelay));
+          cardDelay = (cardDelay >= 400) ? 100 : cardDelay + 50;
+        }
+      });
+
+      // Footer lists specifically staggered
+      document.querySelectorAll('footer ul').forEach(ul => {
+        let liDelay = 100;
+        ul.querySelectorAll('li').forEach(li => {
+          if (!li.hasAttribute('data-aos')) {
+            li.setAttribute('data-aos', 'fade-up');
+            li.setAttribute('data-aos-delay', String(liDelay));
+            liDelay += 100; // Increased delay for more visible staggering
+          }
+        });
+      });
+
+      AOS.init({
+        once: true,
+        duration: 800,
+        offset: 50,
+      });
+      
+      // Some layouts using custom scroll or lazy load need a refresh
+      setTimeout(() => {
+        AOS.refresh();
+      }, 500);
+      setTimeout(() => {
+        AOS.refresh();
+      }, 1500);
+    });
+  </script>
 </body>
+
 </html>

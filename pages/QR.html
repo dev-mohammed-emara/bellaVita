@@ -38,6 +38,7 @@
       }
     }
   </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
 </head>
 
 <body>
@@ -78,7 +79,7 @@
     <div class="pt-32 pb-20 px-6">
       <div class="max-w-4xl mx-auto">
         <div
-          class="bg-gradient-to-br from-primary to-primary/90 rounded-[32px] p-12 md:p-16 shadow-2xl border border-accent/20 text-center relative overflow-hidden">
+          class="bg-gradient-to-br from-primary to-primary/90 rounded-[32px] p-12 md:p-16 shadow-2xl border border-accent/20 text-center relative overflow-hidden" data-aos="fade-up" data-aos-delay="200">
           <div class="absolute top-10 right-10 opacity-10 w-40 h-40 pointer-events-none"><img
               src="../images/Bella_Vita_Summit_LOGO-08-1.d95daad7.png" alt=""
               class="w-full h-full object-contain animate-pulse" style="animation-duration: 6s;"></div>
@@ -191,6 +192,59 @@
       });
     </script>
     <script src="../js/index.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Basic elements
+      document.querySelectorAll('h1, h2, h3').forEach(el => {
+        if (!el.hasAttribute('data-aos')) el.setAttribute('data-aos', 'fade-up');
+      });
+      document.querySelectorAll('p').forEach(el => {
+        if (!el.hasAttribute('data-aos')) {
+          el.setAttribute('data-aos', 'fade-up');
+          el.setAttribute('data-aos-delay', '100');
+        }
+      });
+
+      // Cards and images
+      let cardDelay = 100;
+      document.querySelectorAll('.rounded-2xl, .rounded-\\[32px\\], .rounded-3xl, .rounded-xl, .category-card, .session-card, .attendance-card, img').forEach(el => {
+        if (!el.hasAttribute('data-aos')) {
+          el.setAttribute('data-aos', 'fade-up');
+          el.setAttribute('data-aos-delay', String(cardDelay));
+          cardDelay = (cardDelay >= 400) ? 100 : cardDelay + 50;
+        }
+      });
+
+      // Footer lists specifically staggered
+      document.querySelectorAll('footer ul').forEach(ul => {
+        let liDelay = 100;
+        ul.querySelectorAll('li').forEach(li => {
+          if (!li.hasAttribute('data-aos')) {
+            li.setAttribute('data-aos', 'fade-up');
+            li.setAttribute('data-aos-delay', String(liDelay));
+            liDelay += 100; // Increased delay for more visible staggering
+          }
+        });
+      });
+
+      AOS.init({
+        once: true,
+        duration: 800,
+        offset: 50,
+      });
+      
+      // Some layouts using custom scroll or lazy load need a refresh
+      setTimeout(() => {
+        AOS.refresh();
+      }, 500);
+      setTimeout(() => {
+        AOS.refresh();
+      }, 1500);
+    });
+  </script>
 </body>
+
 
 </html>
